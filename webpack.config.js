@@ -68,7 +68,33 @@ module.exports = {
             },
             'eslint-loader',
         ],
-      }
+      },
+      {
+        test: /\.jsx$/,
+        exclude: /(node_modules|bower_components)/,
+        use: [
+            {
+                loader: 'babel-loader',
+                query: {
+                  presets: ['env', 'react']
+                }
+            },
+            {
+                loader: 'eslint-loader',
+                query: {
+                   "parserOptions": {
+                       "ecmaVersion": 6,
+                       "sourceType": "module",
+                       "ecmaFeatures": {
+                           "jsx": true,
+                       }
+                   },
+                   "rules": {
+                   },
+               },
+            },
+        ],
+      },
     ]
   },
   plugins:[
