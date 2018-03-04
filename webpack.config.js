@@ -5,6 +5,13 @@ const fs                = require('fs');
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 
+const eslint = JSON.parse(fs.readFileSync(path.join(__dirname, '.eslintrc.json'), 'utf8'));
+
+const eslintjsx = Object.assign({}, eslint);
+eslintjsx.parserOptions = Object.assign({}, eslintjsx.parserOptions || {});
+eslintjsx.parserOptions.ecmaFeatures = Object.assign({}, eslintjsx.parserOptions.ecmaFeatures || {});
+eslintjsx.parserOptions.ecmaFeatures.jsx = true;
+
 const PATHS = {
   app: path.join(__dirname, 'src'),
   images:path.join(__dirname,'src/assets/'),
@@ -66,7 +73,10 @@ module.exports = {
                   presets: ['env']
                 }
             },
-            'eslint-loader',
+            {
+                loader: 'eslint-loader',
+                query: eslint,
+            }
         ],
       },
       {
@@ -81,17 +91,7 @@ module.exports = {
             },
             {
                 loader: 'eslint-loader',
-                query: {
-                   "parserOptions": {
-                       "ecmaVersion": 6,
-                       "sourceType": "module",
-                       "ecmaFeatures": {
-                           "jsx": true,
-                       }
-                   },
-                   "rules": {
-                   },
-               },
+                query: eslintjsx,
             },
         ],
       },
