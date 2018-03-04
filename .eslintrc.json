@@ -6,5 +6,11 @@
   },
   "env": {
     "browser": true
+  },
+  "rules": {
+    "eol-last": [
+      2,
+      "always"
+    ]
   }
 }
