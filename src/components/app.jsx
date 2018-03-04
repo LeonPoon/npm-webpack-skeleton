@@ -6,6 +6,8 @@ import React from 'react';
 
 export class App extends React.Component {
     render() {
-        return <h1>Hi React is Here!</h1>;
+        return <div className="jumbotron">
+            <h1>Hi React is Here!</h1>
+        </div>;
     }
 }
