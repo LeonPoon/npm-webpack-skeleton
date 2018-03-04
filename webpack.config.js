@@ -30,6 +30,9 @@ const copyAsIs = ['css', 'js', 'partialViews', 'images'];
 const extractCSS = new ExtractTextPlugin({ filename: '[name].bundle.[contenthash].js.css' })
 
 module.exports = {
+  resolve: {
+    extensions: [".js", ".json", ".ts"],
+  },
   entry: {
     vendors: path.join(PATHS.app, 'vendors.js'),
     app: path.join(PATHS.app, 'app.js'),
@@ -49,10 +52,18 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
+        exclude: path.join(PATHS.app, 'app'),
         use: extractCSS.extract({
           fallback: 'style-loader',
           use: ['css-loader'],
         })
+      },
+      {
+        test: /\.css$/,
+        include: path.join(PATHS.app, 'app'),  /* angular */
+        use: [
+            'raw-loader',
+        ],
       },
       {
         test: /\.(ico|jpg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
@@ -97,8 +108,15 @@ module.exports = {
       },
       {
           test: /\.ts$/,
-          use: 'ts-loader',
+          use: [
+            'ts-loader',
+            'angular2-template-loader',
+          ],
           exclude: /node_modules/
+      },
+      {
+        test: /\.html$/,
+        loader: "html-loader",
       },
     ]
   },
@@ -111,7 +129,6 @@ module.exports = {
     return new htmlPlugin({
       template:path.join(PATHS.app, x),
       filename:x,
-      inject:false
     });
   }))
 };
