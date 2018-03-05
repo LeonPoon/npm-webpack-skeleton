@@ -20,7 +20,7 @@ const options = {
 
 const copyAsIs = ['css', 'js', 'partialViews', 'images'];
 
-const extractCSS = new ExtractTextPlugin({ filename: '[name].bundle.[hash].js.css' })
+const extractCSS = new ExtractTextPlugin({ filename: '[name].bundle.[contenthash].js.css' })
 
 module.exports = {
   entry: {
@@ -29,7 +29,7 @@ module.exports = {
   },
   output: {
     path: PATHS.build,
-    filename: '[name].bundle.[hash].js'
+    filename: '[name].bundle.[chunkhash].js'
   },
   devtool: 'source-map',
   devServer: {
