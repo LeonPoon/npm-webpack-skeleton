@@ -1,10 +1,14 @@
 {
+  "plugins": [
+    "jasmine"
+  ],
   "extends": "eslint:recommended",
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module"
   },
   "env": {
+    "jasmine": true,
     "browser": true
   },
   "rules": {

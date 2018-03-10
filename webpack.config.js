@@ -41,6 +41,7 @@ module.exports = {
     path: PATHS.build,
     filename: '[name].bundle.[chunkhash].js'
   },
+  node: { fs: 'empty' },
   devtool: 'source-map',
   devServer: {
       historyApiFallback: true,

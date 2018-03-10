@@ -1,6 +1,6 @@
+import '../test.ts';
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-/*
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -26,4 +26,3 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('h1').textContent).toContain('Welcome to app!');
   }));
 });
- */
